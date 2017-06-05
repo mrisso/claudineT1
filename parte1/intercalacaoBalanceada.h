@@ -9,6 +9,8 @@ typedef struct tipoRegistro
 	char outros[31];
 } registro;
 
-char *lerBytes (FILE *, int);
+registro *lerBytes (FILE *);
+
+int enchePaginas (registro *, int, FILE *);
 
 void intercalacaoBalanceada (FILE *, int, int);
