@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define STR_ARQ_SAIDA_TAM 5; // Saída tem 5 letras.
+#define STR_ARQ_SAIDA_TAM 5 // Saída tem 5 letras.
 
 typedef struct tipoRegistro
 {
@@ -21,5 +21,7 @@ int compar (const void *, const void *);
 int contaDigitos (int);
 
 FILE *abrirArqSaida(int);
+
+void descarregarPaginas (FILE *, int, registro *);
 
 void intercalacaoBalanceada (FILE *, int, int);

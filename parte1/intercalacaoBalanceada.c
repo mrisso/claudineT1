@@ -44,10 +44,7 @@ int compar (const void *reg1, const void * reg2)
 	registro *registro1 = (registro *) reg1;
 	registro *registro2 = (registro *) reg2;
 
-	if(registro1->chave < registro2->chave)
-		return 0;
-
-	return 1;
+	return (int) registro1->chave - (int) registro2->chave;
 }
 
 
@@ -76,6 +73,22 @@ FILE *abrirArqSaida (int num)
 	sprintf(string, "saida%d", num);
 
 	FILE *arquivoSaida = fopen(string, "w");
+
+	return arquivoSaida;
+}
+
+
+void descarregarPaginas (FILE *arquivo, int mRegistros, registro *mem)
+{
+	int i;
+
+	for(i = 0; i < mRegistros; i++)
+	{
+		if(mem[i].chave == (char) 64)
+			break;
+	}
+
+	fwrite(mem,sizeof(registro),i,arquivo);
 }
 
 
@@ -94,9 +107,9 @@ void intercalacaoBalanceada (FILE *arquivo, int mRegistros, int ordem)
 		fim = enchePaginas(mem, mRegistros, arquivo);
 		// Ordenar com quicksort
 		qsort(mem, mRegistros, sizeof(registro), compar);
-		// abrir arquivo de saída
-		// escrever mem no arquivo
-		// fechar arquivo
+		arquivoSaida = abrirArqSaida(nBlocos);
+		descarregarPaginas(arquivoSaida,mRegistros,mem);
+		fclose(arquivoSaida);
 	} while(!fim);
 
 	// Intercalar arquivos.
