@@ -74,7 +74,25 @@ FILE *abrirArqSaida (int num)
 
 	FILE *arquivoSaida = fopen(string, "w");
 
+	free(string);
+
 	return arquivoSaida;
+}
+
+
+void abrirArqEntrada(FILE **vetArq, int low, int lim)
+{
+	int count = 0;
+	for(int i = low; i <= lim; i++)
+	{
+		char *nome = malloc((contaDigitos(i) + STR_ARQ_SAIDA_TAM) *
+							sizeof(char));
+
+		sprintf(nome, "saida%d", i);
+		vetArq[count] = fopen(nome, "r");
+		count++;
+		free(nome);
+	}
 }
 
 
@@ -92,14 +110,25 @@ void descarregarPaginas (FILE *arquivo, int mRegistros, registro *mem)
 }
 
 
-void intercalacaoBalanceada (FILE *arquivo, int mRegistros, int ordem)
+int minimo (int n1, int n2)
 {
+	if(n1 <= n2)
+		return n1;
+	
+	return n2;
+}
+
+
+void intercalacaoBalanceada (char *nomeArquivo, int mRegistros, int ordem)
+{
+	FILE *arquivo = fopen(nomeArquivo, "r");
 	FILE *arquivoSaida;
+	FILE *vetArquivoEntrada[ordem];
 
 	registro *mem = malloc(mRegistros * sizeof(registro));
 
 	int nBlocos = 0;
-	int fim;
+	int fim, low, high, lim;
 
 	do
 	{
@@ -112,5 +141,17 @@ void intercalacaoBalanceada (FILE *arquivo, int mRegistros, int ordem)
 		fclose(arquivoSaida);
 	} while(!fim);
 
-	// Intercalar arquivos.
+	fclose(arquivo);
+
+	low = 0;
+	high = nBlocos - 1;
+
+	while(low < high)
+	{
+		lim = minimo((low + ordem - 1), high);
+		abrirArqEntrada(vetArquivoEntrada,low,lim);
+		high++;
+		arquivoSaida = abrirArqSaida(high);
+		//Intercalar
+	}
 }

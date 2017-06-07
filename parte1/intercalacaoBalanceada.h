@@ -22,6 +22,10 @@ int contaDigitos (int);
 
 FILE *abrirArqSaida(int);
 
+void abrirArqEntrada(FILE **, int, int);
+
 void descarregarPaginas (FILE *, int, registro *);
 
-void intercalacaoBalanceada (FILE *, int, int);
+int minimo (int, int);
+
+void intercalacaoBalanceada (char *, int, int);
