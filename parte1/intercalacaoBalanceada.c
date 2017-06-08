@@ -72,7 +72,7 @@ int contaDigitos (int num)
 
 FILE *abrirArqSaida (int num)
 {
-	char *string = malloc((contaDigitos(num) + STR_ARQ_SAIDA_TAM) *
+	char *string = malloc((1 + contaDigitos(num) + STR_ARQ_SAIDA_TAM) *
 						  sizeof(char));
 
 	sprintf(string, "saida%d", num);
@@ -91,7 +91,7 @@ void abrirArqEntrada(FILE **vetArq, int low, int lim)
 	
 	for(i = 0; i <= (lim - low); i++)
 	{
-		char *nome = malloc((contaDigitos(low + i + 1) + STR_ARQ_SAIDA_TAM) *
+		char *nome = malloc((1 + contaDigitos(low + i + 1) + STR_ARQ_SAIDA_TAM) *
 							sizeof(char));
 
 		sprintf(nome, "saida%d", (low + i + 1));
@@ -107,11 +107,11 @@ void descarregarPaginas (FILE *arquivo, int mRegistros, registro **mem)
 
 	for(i = 0; i < mRegistros; i++)
 	{
-		if(mem[i] == NULL)
-			break;
+		if(mem[i] != NULL)
+		{
+			fwrite(mem[i],sizeof(registro),1,arquivo);
+		}
 	}
-
-	fwrite(*mem,sizeof(registro),i,arquivo);
 }
 
 
@@ -131,7 +131,7 @@ int comparacaoR (registro r1, registro r2)
 
 void apagaArquivoSaida(int num)
 {
-	char *nome = malloc((contaDigitos(num) + STR_ARQ_SAIDA_TAM) *
+	char *nome = malloc((1 + contaDigitos(num) + STR_ARQ_SAIDA_TAM) *
 						sizeof(char));
 
 	sprintf(nome, "saida%d", num);
@@ -144,7 +144,7 @@ void apagaArquivoSaida(int num)
 
 void renomearArquivo(int num, char *nome)
 {
-	char *nomeAntigo = malloc((contaDigitos(num) + STR_ARQ_SAIDA_TAM) *
+	char *nomeAntigo = malloc((1 + contaDigitos(num) + STR_ARQ_SAIDA_TAM) *
 						sizeof(char));
 
 	sprintf(nomeAntigo, "saida%d", num);
@@ -238,7 +238,7 @@ void intercalacaoBalanceada (char *nomeArquivo, int mRegistros, int ordem, char 
 	low = 0;
 	high = nBlocos;
 
-	while(low < high)
+	while(low < high - 1)
 	{
 		lim = minimo((low + ordem - 1), high);
 		abrirArqEntrada(vetArquivoEntrada,low,lim);
@@ -247,15 +247,15 @@ void intercalacaoBalanceada (char *nomeArquivo, int mRegistros, int ordem, char 
 		intercala(vetArquivoEntrada,low,lim,arquivoSaida,mem);
 		fclose(arquivoSaida);
 
-		for(i = low; i < lim; i++)
+		for(i = 0; i < (lim - low + 1); i++)
 		{
 			fclose(vetArquivoEntrada[i]);
-			apagaArquivoSaida(i);
+			apagaArquivoSaida(i + low + 1);
 		}
 
 		low += ordem;
 	}
 
-	renomearArquivo(high,nomeArquivoSaida);
+	renomearArquivo(high, nomeArquivoSaida);
 	free(mem);
 }
