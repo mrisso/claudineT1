@@ -14,7 +14,7 @@ typedef struct tipoRegistro
 
 registro *lerBytes (FILE *);
 
-int enchePaginas (registro *, int, FILE *);
+int enchePaginas (registro **, int, FILE *);
 
 int compar (const void *, const void *);
 
@@ -24,8 +24,16 @@ FILE *abrirArqSaida(int);
 
 void abrirArqEntrada(FILE **, int, int);
 
-void descarregarPaginas (FILE *, int, registro *);
+void descarregarPaginas (FILE *, int, registro **);
 
 int minimo (int, int);
 
-void intercalacaoBalanceada (char *, int, int);
+int comparacaoR (registro, registro);
+
+void apagaArquivoSaida(int);
+
+void renomearArquivo(int, char*);
+
+void intercala (FILE**, int, int, FILE*, registro**);
+
+void intercalacaoBalanceada (char *, int, int, char *);
