@@ -8,7 +8,7 @@ int main(int argc, char **argv)
 		return 1;
 	}
 	
-	FILE *arqEntrada = fopen("input","w+");
+	FILE *arqEntrada = fopen(argv[1],"w+");
 	FILE *arqTexto = fopen("Chaves.txt","r");
 
 	registro aux[22];
