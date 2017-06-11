@@ -3,7 +3,7 @@ CC = gcc
 
 CFLAGS = -Wall -g
 
-LDFLAGS = -Wall
+LDFLAGS = -Wall -lm
 
 FONTES = $(wildcard *.c)
 

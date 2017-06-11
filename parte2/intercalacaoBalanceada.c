@@ -15,10 +15,10 @@ registro *lerBytes (FILE *arquivo)
 }
 
 
-int enchePaginas (registro **mem, int mRegistros, FILE *arquivo)
+int enchePaginas (registro **mem, long mRegistros, FILE *arquivo)
 {
 	registro *aux;
-	int i,j;
+	long i,j;
 	
 	for(i = 0; i < mRegistros; i++)
 	{
@@ -49,11 +49,11 @@ int compar (const void *reg1, const void * reg2)
 	if(registro2 == NULL)
 		return -1;
 
-	return (int) registro1->chave - (int) registro2->chave;
+	return registro1->chave - registro2->chave;
 }
 
 
-int contaDigitos (int num)
+int contaDigitos (long num)
 {
 	if(num == 0)
 		return 1;
@@ -70,12 +70,12 @@ int contaDigitos (int num)
 }
 
 
-FILE *abrirArqSaida (int num)
+FILE *abrirArqSaida (long num)
 {
 	char *string = malloc((1 + contaDigitos(num) + STR_ARQ_SAIDA_TAM) *
 						  sizeof(char));
 
-	sprintf(string, "saida%d", num);
+	sprintf(string, "saidas/saida%li", num);
 
 	FILE *arquivoSaida = fopen(string, "w+");
 
@@ -85,25 +85,25 @@ FILE *abrirArqSaida (int num)
 }
 
 
-void abrirArqEntrada(FILE **vetArq, int low, int lim)
+void abrirArqEntrada(FILE **vetArq, long low, long lim)
 {
-	int i;
+	long i;
 	
 	for(i = 0; i <= (lim - low); i++)
 	{
 		char *nome = malloc((1 + contaDigitos(low + i + 1) + STR_ARQ_SAIDA_TAM) *
 							sizeof(char));
 
-		sprintf(nome, "saida%d", (low + i + 1));
+		sprintf(nome, "saidas/saida%li", (low + i + 1));
 		vetArq[i] = fopen(nome, "rb");
 		free(nome);
 	}
 }
 
 
-void descarregarPaginas (FILE *arquivo, int mRegistros, registro **mem)
+void descarregarPaginas (FILE *arquivo, long mRegistros, registro **mem)
 {
-	int i;
+	long i;
 
 	for(i = 0; i < mRegistros; i++)
 	{
@@ -115,7 +115,7 @@ void descarregarPaginas (FILE *arquivo, int mRegistros, registro **mem)
 }
 
 
-int minimo (int n1, int n2)
+long minimo (long n1, long n2)
 {
 	if(n1 <= n2)
 		return n1;
@@ -129,12 +129,12 @@ int comparacaoR (registro r1, registro r2)
 }
 
 
-void apagaArquivoSaida(int num)
+void apagaArquivoSaida(long num)
 {
 	char *nome = malloc((1 + contaDigitos(num) + STR_ARQ_SAIDA_TAM) *
 						sizeof(char));
 
-	sprintf(nome, "saida%d", num);
+	sprintf(nome, "saidas/saida%li", num);
 
 	remove(nome);
 
@@ -142,12 +142,12 @@ void apagaArquivoSaida(int num)
 }
 
 
-void renomearArquivo(int num, char *nome)
+void renomearArquivo(long num, char *nome)
 {
 	char *nomeAntigo = malloc((1 + contaDigitos(num) + STR_ARQ_SAIDA_TAM) *
 						sizeof(char));
 
-	sprintf(nomeAntigo, "saida%d", num);
+	sprintf(nomeAntigo, "saidas/saida%li", num);
 
 	rename(nomeAntigo, nome);
 
@@ -155,10 +155,10 @@ void renomearArquivo(int num, char *nome)
 }
 
 
-void intercala (FILE **vetArquivoEntrada, int low, int lim, FILE *arqSaida, registro **mem)
+void intercala (FILE **vetArquivoEntrada, long low, long lim, FILE *arqSaida, registro **mem)
 {
-	int i, j, aux, arqID;
-	int ordem = lim - low + 1;
+	long i, j, aux, arqID;
+	long ordem = lim - low + 1;
 	registro *menor = NULL;
 
 	j = aux = 0;
@@ -211,7 +211,7 @@ void intercala (FILE **vetArquivoEntrada, int low, int lim, FILE *arqSaida, regi
 }
 
 
-void intercalacaoBalanceada (char *nomeArquivo, int mRegistros, int ordem, char *nomeArquivoSaida)
+void intercalacaoBalanceada (char *nomeArquivo, long mRegistros, long ordem, char *nomeArquivoSaida)
 {
 	FILE *arquivo = fopen(nomeArquivo, "r");
 	FILE *arquivoSaida;
@@ -219,8 +219,8 @@ void intercalacaoBalanceada (char *nomeArquivo, int mRegistros, int ordem, char 
 
 	registro **mem = malloc(mRegistros * sizeof(registro*));
 
-	int nBlocos = 0;
-	int fim, low, high, lim, i;
+	long nBlocos = 0;
+	long fim, low, high, lim, i;
 
 	do
 	{

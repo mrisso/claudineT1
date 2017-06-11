@@ -20,13 +20,15 @@ int main(int argc, char **argv)
 
 	for(i = 0; i < tam; i++)
 	{
-		aux->chave = rand() % 1000001; //gerando inteiros de 0 a 1 milhao
+		aux->chave = rand() % 100001; //gerando inteiros de 0 a 1 milhao
 		fwrite(aux, sizeof(registro), 1, arquivo);
 	}
 
+	fclose(arquivo);
+
 	free(aux);
 		
-	intercalacaoBalanceada("entrada", 2, tam/4, argv[2]);
+	intercalacaoBalanceada("entrada", tam/4, 2, argv[2]);
 
 	return 0;
 }
