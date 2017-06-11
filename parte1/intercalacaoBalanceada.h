@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #define STR_ARQ_SAIDA_TAM 5 // Saída tem 5 letras.
 

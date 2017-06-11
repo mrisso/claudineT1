@@ -95,7 +95,13 @@ void abrirArqEntrada(FILE **vetArq, long low, long lim)
 							sizeof(char));
 
 		sprintf(nome, "saidas/saida%li", (low + i + 1));
-		vetArq[i] = fopen(nome, "rb");
+		if(access(nome, F_OK) != -1) // Verificar se arquivo existe
+		{
+			vetArq[i] = fopen(nome, "rb");
+		}
+		else
+			vetArq[i] = NULL;
+
 		free(nome);
 	}
 }
@@ -165,7 +171,14 @@ void intercala (FILE **vetArquivoEntrada, long low, long lim, FILE *arqSaida, re
 
 	for(i = 0; i < ordem; i++)
 	{
-		mem[i] = lerBytes(vetArquivoEntrada[i]);
+		if(vetArquivoEntrada[i] != NULL)
+		{
+			mem[i] = lerBytes(vetArquivoEntrada[i]);
+		}
+
+		else
+			mem[i] = NULL;
+
 		if(mem[i] != NULL)
 		{
 			menor = mem[i];

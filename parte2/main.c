@@ -1,34 +1,269 @@
 #include "intercalacaoBalanceada.h"
 
-int main(int argc, char **argv)
+int main(void)
 {
-	if(argc != 3)
-	{
-		printf("Uso: %s <n-registros> <arq-saida>\n", argv[0]);
-		printf("Em que o número de registros será igual a 2^n.\n");
-		return 1;
-	}
-
 	registro *aux = malloc(sizeof(registro));
 
-	int i;
-	long tam = pow(2,atoi(argv[1]));
-	FILE *arquivo = fopen("entrada","w+");
+	int i,j;
+	long tam[3] = {pow(2,20),pow(2,21),pow(2,22)};
+	FILE *arquivo[3] = {fopen("entrada20","w+"),fopen("entrada21","w+"),fopen("entrada22","w+")};
+
+	struct timeval inicio, fim;
+	int tmili = 0;
 
 	//Semente para números aleatórios
 	srand(time(NULL));
 
-	for(i = 0; i < tam; i++)
-	{
-		aux->chave = rand() % 100001; //gerando inteiros de 0 a 1 milhao
-		fwrite(aux, sizeof(registro), 1, arquivo);
-	}
+	for(j = 0; j < 3; j++)
+		for(i = 0; i < tam[j]; i++)
+		{
+			aux->chave = rand() % 100001; //gerando inteiros de 0 a 1 milhao
+			fwrite(aux, sizeof(registro), 1, arquivo[j]);
+		}
 
-	fclose(arquivo);
+	for(j = 0; j < 3; j++)
+		fclose(arquivo[j]);
 
 	free(aux);
-		
-	intercalacaoBalanceada("entrada", tam/4, 2, argv[2]);
 
+	//f = 2
+		
+	printf("f = 2\n");
+	printf("n\t");
+	printf("m = n/4\t");
+	printf("m = n/16\t");
+	printf("m = n/256\n");
+	printf("2e20\t");
+
+	//2e20
+	
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada20", tam[0]/4, 2, "saida20");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada20", tam[0]/16, 2, "saida20");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada20", tam[0]/256, 2, "saida20");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\n",tmili);
+	printf("2e21\t");
+
+	//2e21
+	
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada21", tam[1]/4, 2, "saida21");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada21", tam[1]/16, 2, "saida21");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada21", tam[1]/256, 2, "saida21");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\n",tmili);
+	printf("2e22\t");
+
+	//2e22
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada22", tam[2]/4, 2, "saida22");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada22", tam[2]/16, 2, "saida22");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada22", tam[2]/256, 2, "saida22");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\n",tmili);
+
+	//f = 3
+
+	printf("f = 3\n");
+	printf("n\t");
+	printf("m = n/4\t");
+	printf("m = n/16\t");
+	printf("m = n/256\n");
+	printf("2e20\t");
+
+	//2e20
+	
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada20", tam[0]/4, 3, "saida20");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada20", tam[0]/16, 3, "saida20");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada20", tam[0]/256, 3, "saida20");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\n",tmili);
+	printf("2e21\t");
+
+	//2e21
+	
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada21", tam[1]/4, 3, "saida21");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada21", tam[1]/16, 3, "saida21");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada21", tam[1]/256, 3, "saida21");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\n",tmili);
+	printf("2e22\t");
+
+	//2e22
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada22", tam[2]/4, 3, "saida22");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada22", tam[2]/16, 3, "saida22");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada22", tam[2]/256, 3, "saida22");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\n",tmili);
+
+	//f = 4
+
+	printf("f = 4\n");
+	printf("n\t");
+	printf("m = n/4\t");
+	printf("m = n/16\t");
+	printf("m = n/256\n");
+	printf("2e20\t");
+
+	//2e20
+	
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada20", tam[0]/4, 4, "saida20");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada20", tam[0]/16, 4, "saida20");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada20", tam[0]/256, 4, "saida20");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\n",tmili);
+	printf("2e21\t");
+
+	//2e21
+	
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada21", tam[1]/4, 4, "saida21");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada21", tam[1]/16, 4, "saida21");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada21", tam[1]/256, 4, "saida21");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\n",tmili);
+	printf("2e22\t");
+
+	//2e22
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada22", tam[2]/4, 4, "saida22");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada22", tam[2]/16, 4, "saida22");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\t",tmili);
+
+	gettimeofday(&inicio, NULL);
+	intercalacaoBalanceada("entrada22", tam[2]/256, 4, "saida22");
+	gettimeofday(&fim, NULL);
+	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+
+	printf("%d us\n",tmili);
 	return 0;
 }
