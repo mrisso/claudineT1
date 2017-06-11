@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 	fclose(arqEntrada);
 	fclose(arqTexto);
 
-	intercalacaoBalanceada(argv[1], 3, 4,argv[2]);
+	intercalacaoBalanceada(argv[1], 3, 2,argv[2]);
 
 	return 0;
 }
