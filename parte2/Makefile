@@ -26,4 +26,4 @@ clean:
 	rm -rf *.o
 
 rm:	clean
-	rm -rf $(EXECUTAVEL)
+	rm -rf $(EXECUTAVEL) saida2* entrada2* saidas/saida*

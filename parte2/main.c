@@ -30,7 +30,7 @@ int main(void)
 		
 	printf("f = 2\n");
 	printf("n\t");
-	printf("m = n/4\t");
+	printf("m = n/4\t\t");
 	printf("m = n/16\t");
 	printf("m = n/256\n");
 	printf("2e20\t");
@@ -110,7 +110,7 @@ int main(void)
 
 	printf("f = 3\n");
 	printf("n\t");
-	printf("m = n/4\t");
+	printf("m = n/4\t\t");
 	printf("m = n/16\t");
 	printf("m = n/256\n");
 	printf("2e20\t");
@@ -190,7 +190,7 @@ int main(void)
 
 	printf("f = 4\n");
 	printf("n\t");
-	printf("m = n/4\t");
+	printf("m = n/4\t\t");
 	printf("m = n/16\t");
 	printf("m = n/256\n");
 	printf("2e20\t");
