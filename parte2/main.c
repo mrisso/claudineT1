@@ -9,7 +9,7 @@ int main(void)
 	FILE *arquivo[3] = {fopen("entrada20","w+"),fopen("entrada21","w+"),fopen("entrada22","w+")};
 
 	struct timeval inicio, fim;
-	int tmili = 0;
+	int tmicro = 0;
 
 	//Semente para números aleatórios
 	srand(time(NULL));
@@ -40,23 +40,23 @@ int main(void)
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada20", tam[0]/4, 2, "saida20");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada20", tam[0]/16, 2, "saida20");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada20", tam[0]/256, 2, "saida20");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\n",tmili);
+	printf("%d us\n",tmicro);
 	printf("2e21\t");
 
 	//2e21
@@ -64,23 +64,23 @@ int main(void)
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada21", tam[1]/4, 2, "saida21");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada21", tam[1]/16, 2, "saida21");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada21", tam[1]/256, 2, "saida21");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\n",tmili);
+	printf("%d us\n",tmicro);
 	printf("2e22\t");
 
 	//2e22
@@ -88,23 +88,23 @@ int main(void)
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada22", tam[2]/4, 2, "saida22");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada22", tam[2]/16, 2, "saida22");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada22", tam[2]/256, 2, "saida22");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\n",tmili);
+	printf("%d us\n",tmicro);
 
 	//f = 3
 
@@ -120,23 +120,23 @@ int main(void)
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada20", tam[0]/4, 3, "saida20");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada20", tam[0]/16, 3, "saida20");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada20", tam[0]/256, 3, "saida20");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\n",tmili);
+	printf("%d us\n",tmicro);
 	printf("2e21\t");
 
 	//2e21
@@ -144,23 +144,23 @@ int main(void)
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada21", tam[1]/4, 3, "saida21");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada21", tam[1]/16, 3, "saida21");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada21", tam[1]/256, 3, "saida21");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\n",tmili);
+	printf("%d us\n",tmicro);
 	printf("2e22\t");
 
 	//2e22
@@ -168,23 +168,23 @@ int main(void)
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada22", tam[2]/4, 3, "saida22");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada22", tam[2]/16, 3, "saida22");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada22", tam[2]/256, 3, "saida22");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\n",tmili);
+	printf("%d us\n",tmicro);
 
 	//f = 4
 
@@ -200,23 +200,23 @@ int main(void)
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada20", tam[0]/4, 4, "saida20");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada20", tam[0]/16, 4, "saida20");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada20", tam[0]/256, 4, "saida20");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\n",tmili);
+	printf("%d us\n",tmicro);
 	printf("2e21\t");
 
 	//2e21
@@ -224,23 +224,23 @@ int main(void)
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada21", tam[1]/4, 4, "saida21");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada21", tam[1]/16, 4, "saida21");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada21", tam[1]/256, 4, "saida21");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\n",tmili);
+	printf("%d us\n",tmicro);
 	printf("2e22\t");
 
 	//2e22
@@ -248,22 +248,22 @@ int main(void)
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada22", tam[2]/4, 4, "saida22");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada22", tam[2]/16, 4, "saida22");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\t",tmili);
+	printf("%d us\t",tmicro);
 
 	gettimeofday(&inicio, NULL);
 	intercalacaoBalanceada("entrada22", tam[2]/256, 4, "saida22");
 	gettimeofday(&fim, NULL);
-	tmili += (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
+	tmicro = (int) (1000000 * (fim.tv_sec - inicio.tv_sec) + (fim.tv_usec - inicio.tv_usec));
 
-	printf("%d us\n",tmili);
+	printf("%d us\n",tmicro);
 	return 0;
 }
