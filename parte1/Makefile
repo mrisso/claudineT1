@@ -19,6 +19,9 @@ $(EXECUTAVEL):	$(OBJETOS)
 %.o: %.c
 	$(CC) -c $(CFLAGS) $^
 
+run:	$(EXECUTAVEL)
+	./$(EXECUTAVEL) entrada saida
+
 clean:
 	rm -rf *.o
 

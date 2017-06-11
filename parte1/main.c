@@ -1,23 +1,5 @@
 #include "intercalacaoBalanceada.h"
 
-void printFile(char *nome)
-{
-	FILE *arquivo = fopen(nome, "r");
-	registro *aux = malloc(sizeof(registro));
-	size_t i = 1;
-
-	while(1)
-	{
-		i = fread(aux,sizeof(registro),1,arquivo);	
-		if(i != 0)
-		{
-			printf("%c\n", aux->chave);
-		}
-
-		else
-			break;
-	}
-}
 
 int main(int argc, char **argv)
 {
@@ -44,8 +26,6 @@ int main(int argc, char **argv)
 	fclose(arqTexto);
 
 	intercalacaoBalanceada(argv[1], 3, 2,argv[2]);
-
-	printFile(argv[2]);
 
 	return 0;
 }

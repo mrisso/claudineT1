@@ -70,12 +70,17 @@ int contaDigitos (int num)
 }
 
 
-FILE *abrirArqSaida (int num)
+FILE *abrirArqSaida (int num, int print)
 {
 	char *string = malloc((1 + contaDigitos(num) + STR_ARQ_SAIDA_TAM) *
 						  sizeof(char));
 
 	sprintf(string, "saida%d", num);
+
+	if(print)
+	{
+		printf("Abrindo arquivo de saída: %s\n", string);
+	}
 
 	FILE *arquivoSaida = fopen(string, "w+");
 
@@ -95,6 +100,12 @@ void abrirArqEntrada(FILE **vetArq, int low, int lim)
 							sizeof(char));
 
 		sprintf(nome, "saida%d", (low + i + 1));
+
+		//Mostrar arquivos de entrada usados no momento
+		printf("Abrindo arquivo de entrada: %s\n", nome);
+		//Mostrar Conteúdo dos Arquivos
+		imprimirArquivo(nome);
+
 		vetArq[i] = fopen(nome, "rb");
 		free(nome);
 	}
@@ -152,6 +163,59 @@ void renomearArquivo(int num, char *nome)
 	rename(nomeAntigo, nome);
 
 	free(nomeAntigo);
+}
+
+
+void imprimirArquivo(char *nome)
+{
+	FILE *arquivo = fopen(nome, "r");
+	registro *aux = malloc(sizeof(registro));
+	size_t i = 1;
+
+	printf("Coteúdo: ");
+	while(1)
+	{
+		i = fread(aux,sizeof(registro),1,arquivo);	
+		if(i != 0)
+		{
+			printf("%c ", aux->chave);
+		}
+
+		else
+		{
+			printf("\n");
+			break;
+		}
+	}
+}
+
+
+void imprimirNArquivo(int num)
+{
+	char *nome = malloc((1 + contaDigitos(num) + STR_ARQ_SAIDA_TAM) *
+						sizeof(char));
+
+	sprintf(nome, "saida%d", num);
+
+	imprimirArquivo(nome);
+
+	free(nome);
+}
+	
+
+
+void imprimirMemoria(registro **mem, int mRegistros)
+{
+	int i;
+
+	for(i = 0; i < mRegistros; i++)
+	{
+		if(mem[i] != NULL)
+		{
+			printf("%c ", mem[i]->chave);
+		}
+	}
+	printf("\n");
 }
 
 
@@ -222,16 +286,19 @@ void intercalacaoBalanceada (char *nomeArquivo, int mRegistros, int ordem, char 
 	int nBlocos = 0;
 	int fim, low, high, lim, i;
 
+	printf("Conteúdo dos Blocos Ordenados:\n");
 	do
 	{
 		nBlocos++;
 		fim = enchePaginas(mem, mRegistros, arquivo);
 		// Ordenar com quicksort
 		qsort(mem, mRegistros, sizeof(registro*), compar);
-		arquivoSaida = abrirArqSaida(nBlocos);
+		imprimirMemoria(mem, mRegistros);
+		arquivoSaida = abrirArqSaida(nBlocos,0); //Sem impressao
 		descarregarPaginas(arquivoSaida,mRegistros,mem);
 		fclose(arquivoSaida);
 	} while(!fim);
+	printf("\n");
 
 	fclose(arquivo);
 
@@ -241,11 +308,18 @@ void intercalacaoBalanceada (char *nomeArquivo, int mRegistros, int ordem, char 
 	while(low < high - 1)
 	{
 		lim = minimo((low + ordem - 1), high);
-		abrirArqEntrada(vetArquivoEntrada,low,lim);
 		high++;
-		arquivoSaida = abrirArqSaida(high);
+
+		//Mostra o conteúdo de Low, Lim e High
+		printf("Low: %i\nLim: %i\nHigh: %i\n",low, lim, high);
+
+		abrirArqEntrada(vetArquivoEntrada,low,lim);
+		arquivoSaida = abrirArqSaida(high,1); //Com impressao
 		intercala(vetArquivoEntrada,low,lim,arquivoSaida,mem);
 		fclose(arquivoSaida);
+
+		//Mostra conteúdo do arquivo de saída
+		imprimirNArquivo(high);
 
 		for(i = 0; i < (lim - low + 1); i++)
 		{
@@ -254,6 +328,7 @@ void intercalacaoBalanceada (char *nomeArquivo, int mRegistros, int ordem, char 
 		}
 
 		low += ordem;
+		printf("\n");
 	}
 
 	renomearArquivo(high, nomeArquivoSaida);

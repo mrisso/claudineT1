@@ -20,7 +20,7 @@ int compar (const void *, const void *);
 
 int contaDigitos (int);
 
-FILE *abrirArqSaida(int);
+FILE *abrirArqSaida(int, int);
 
 void abrirArqEntrada(FILE **, int, int);
 
@@ -33,6 +33,12 @@ int comparacaoR (registro, registro);
 void apagaArquivoSaida(int);
 
 void renomearArquivo(int, char*);
+
+void imprimirArquivo(char *);
+
+void imprimirNArquivo(int);
+
+void imprimirMemoria(registro **, int);
 
 void intercala (FILE**, int, int, FILE*, registro**);
 
