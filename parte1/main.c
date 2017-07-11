@@ -1,5 +1,6 @@
 #include "intercalacaoBalanceada.h"
 
+#define MAX_TAM 100
 
 int main(int argc, char **argv)
 {
@@ -12,15 +13,17 @@ int main(int argc, char **argv)
 	FILE *arqEntrada = fopen(argv[1],"w+");
 	FILE *arqTexto = fopen("Chaves.txt","r");
 
-	registro aux[22];
-	int i;
+	registro aux[MAX_TAM];
+	int i = 0;
 
-	for(i = 0; i < 22; i++)
+	while(1)
 	{
-		fscanf(arqTexto, "%c\n", &aux[i].chave);
+		if(fscanf(arqTexto, "%c\n", &aux[i].chave) == EOF)
+			break;
+		i++;
 	}
 
-	fwrite(aux, sizeof(registro), 22, arqEntrada);
+	fwrite(aux, sizeof(registro), i, arqEntrada);
 
 	fclose(arqEntrada);
 	fclose(arqTexto);
